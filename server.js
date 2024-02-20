@@ -42,39 +42,46 @@ app.get("/screenshot", async (request, response) => {
 });
 
 app.post("/pdf", async (request, response) => {
-    const html = request.body.html;
 
-    if (!html) {
-        return response
-            .status(400)
-            .json({ error: "HTML content is required in the request body." });
-    }
+    console.log(request);
 
-    console.log('Generating PDF from HTML content');
+    // const html = request.body.html;
 
-    try {
-        const browser = await puppeteer.launch({
-            args: ["--no-sandbox"],
-            headless: true
-        });
-        const page = await browser.newPage();
+    // if (!html) {
+    //     return response
+    //         .status(400)
+    //         .json({ error: "HTML content is required in the request body." });
+    // }
+
+    // console.log('Generating PDF from HTML content');
+
+    // try {
+    //     const browser = await puppeteer.launch({
+    //         args: ["--no-sandbox"],
+    //         headless: true
+    //     });
+    //     const page = await browser.newPage();
     
-        await page.setContent(html, { waitUntil: "networkidle2" });
+    //     await page.setContent(html, { waitUntil: "networkidle2" });
 
-        const pdf = await page.pdf({ format: 'letter' });
+    //     const pdf = await page.pdf({ format: 'letter' });
 
-        await browser.close();
+    //     await browser.close();
 
-        response.setHeader('Content-Type', 'application/pdf');
-        response.setHeader('Content-Disposition', `attachment; filename="document.pdf"`);
-        response.send(pdf);
+    //     response.setHeader('Content-Type', 'application/pdf');
+    //     response.setHeader('Content-Disposition', `attachment; filename="document.pdf"`);
+    //     response.send(pdf);
 
-    } catch (error) {
-        console.error("Error occurred:", error);
-        return response
-            .status(500)
-            .json({ error: "Failed to generate PDF.", message: error });
-    }
+    // } catch (error) {
+    //     console.error("Error occurred:", error);
+    //     return response
+    //         .status(500)
+    //         .json({ error: "Failed to generate PDF.", message: error });
+    // }
+
+    return response
+            .status(200)
+            .json({ ok: "Testing.", message: "Testing via consoling" });
 });
 
 var listener = app.listen(process.env.PORT, function () {
