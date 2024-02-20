@@ -63,11 +63,14 @@ app.post("/pdf", async (request, response) => {
         });
         const page = await browser.newPage();
     
-        await page.setContent(html, { waitUntil: "domcontentloaded" });
+        await page.goto('data:text/html,' + html, { waitUntil: "networkidle" });
 
-        const pdf = await page.pdf({ format: 'letter' });
+        const pdf = await page.pdf({
+          path: `interactiveWallReport_${Date.now()}`,
+          format: 'letter'
+        });
 
-        await browser.close();
+        browser.close();
 
         response.setHeader('Content-Type', 'application/pdf');
         response.setHeader('Content-Disposition', `attachment; filename="document.pdf"`);
