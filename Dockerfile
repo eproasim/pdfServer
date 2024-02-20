@@ -2,7 +2,7 @@
 FROM node:18
 
 # File Author / Maintainer
-LABEL maintainer=your_email@gmail.com"
+LABEL maintainer="adrian@adinteractive.net"
 
 # Update the repository sources list
 RUN apt-get update && apt-get upgrade -y
