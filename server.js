@@ -63,7 +63,7 @@ app.post("/pdf", async (request, response) => {
         });
         const page = await browser.newPage();
     
-        await page.setContent(html, { waitUntil: "documentloaded" });
+        await page.setContent(html, { waitUntil: "domcontentloaded" });
 
         const pdf = await page.pdf({ format: 'letter' });
 
