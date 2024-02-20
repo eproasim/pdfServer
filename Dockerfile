@@ -1,5 +1,5 @@
 # Set the base image to Node 18
-FROM node:18
+FROM node:21
 
 # File Author / Maintainer
 LABEL maintainer="adrian@adinteractive.net"
@@ -22,7 +22,7 @@ RUN npm install
 RUN npm ci
 
 # Build the API
-RUN npm run build <your-app-name> # command to build an app in an NX monorepo; replace with your app build command
+RUN npm run build pdfServer # command to build an app in an NX monorepo; replace with your app build command
 
 # Your app binds to port 8080 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 8080
@@ -33,4 +33,4 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_ARGS='--no-sandbox'
 
 # Start command
-CMD [ "node", "dist/apps<your-app-name>/main.js" ] # again replace this with your specific node command to start your app/service
+CMD [ "node", "server.js" ] # again replace this with your specific node command to start your app/service
