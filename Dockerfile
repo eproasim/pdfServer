@@ -16,6 +16,8 @@ WORKDIR /app
 # Bundle your app source inside the docker image
 COPY . .
 
+RUN npm install
+
 # Install all the dependencies
 RUN npm ci
 
