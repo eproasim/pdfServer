@@ -1,0 +1,12 @@
+name: AD Interactive PDF Response
+region: nyc
+services:
+- dockerfile_path: Dockerfile
+  # this path is for an NX monorepo
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: eproasim/pdfServer
+  http_port: 8080
+  name: projects
+  source_dir: /
