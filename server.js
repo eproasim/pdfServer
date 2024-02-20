@@ -63,17 +63,19 @@ app.post("/pdf", async (request, response) => {
         });
         const page = await browser.newPage();
     
-        await page.goto('data:text/html,' + html, { waitUntil: "networkidle0" });
+        await page.goto('data:text/html,' + html, { waitUntil: "load" });
+
+        // await page.evaluateHandle('document.fonts.ready');
+
 
         const pdf = await page.pdf({
-          path: `interactiveWallReport_${Date.now()}`,
           format: 'letter'
         });
 
         browser.close();
 
         response.setHeader('Content-Type', 'application/pdf');
-        response.setHeader('Content-Disposition', `attachment; filename="document.pdf"`);
+        response.setHeader('Content-Disposition', `attachment; filename="interactiveWallReport_${Date.now()}.pdf"`);
         response.send(pdf);
 
     } catch (error) {
