@@ -1,7 +1,10 @@
 const express = require("express"),
   app = express(),
   puppeteer = require("puppeteer"),
-  fs = require("fs");
+  fs = require("fs"),
+  bodyParser = require('body-parser');
+
+  app.use(bodyParser.json());
 
 app.get("/screenshot", async (request, response) => {
   const url = request.query.url;
