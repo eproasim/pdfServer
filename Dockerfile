@@ -22,7 +22,7 @@ RUN npm install
 RUN npm ci
 
 # Build the API
-RUN npm run build pdfServer # command to build an app in an NX monorepo; replace with your app build command
+# RUN npm run build pdfServer # command to build an app in an NX monorepo; replace with your app build command
 
 # Your app binds to port 8080 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 8080
