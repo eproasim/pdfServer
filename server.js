@@ -63,7 +63,7 @@ app.post("/pdf", async (request, response) => {
         });
         const page = await browser.newPage();
     
-        await page.goto('data:text/html,' + html, { waitUntil: "load" });
+        await page.setContent(html, { waitUntil: "load" });
 
         // await page.evaluateHandle('document.fonts.ready');
 
