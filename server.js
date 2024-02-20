@@ -63,7 +63,7 @@ app.post("/pdf", async (request, response) => {
         });
         const page = await browser.newPage();
     
-        await page.goto('data:text/html,' + html, { waitUntil: "networkidle" });
+        await page.goto('data:text/html,' + html, { waitUntil: "networkidle0" });
 
         const pdf = await page.pdf({
           path: `interactiveWallReport_${Date.now()}`,
