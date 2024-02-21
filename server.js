@@ -69,7 +69,9 @@ app.post("/pdf", async (request, response) => {
 
 
         const pdf = await page.pdf({
-          format: 'letter'
+          format: 'letter',
+          printBackground: true,
+          path: `interactiveWallReport_${Date.now()}.pdf`
         });
 
         browser.close();
